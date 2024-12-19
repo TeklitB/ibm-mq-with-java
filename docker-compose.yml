@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  ibmmq:
+    image: icr.io/ibm-messaging/mq:latest
+    container_name: QM1
+    ports:
+      - "1414:1414" # for incoming connections
+      - "9443:9443" # used by MQ console
+    volumes:
+      - qm1data:/mnt/mqm
+    environment:
+      LICENSE: accept
+      MQ_QMGR_NAME: QM1
+      MQ_APP_USER: app
+      MQ_APP_PASSWORD: passw0rd     
+      MQ_ADMIN_USER: admin
+      MQ_ADMIN_PASSWORD: passw0rd
+
+volumes:
+  qm1data:
